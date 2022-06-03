@@ -1,0 +1,161 @@
+[
+    {
+        "id": "fbde97b29c2ae97b",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "33e9f083053bf605",
+        "type": "mqtt in",
+        "z": "fbde97b29c2ae97b",
+        "name": "",
+        "topic": "PDAControl",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "711ee97f05089625",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 250,
+        "y": 240,
+        "wires": [
+            [
+                "09f5e2138930013e"
+            ]
+        ]
+    },
+    {
+        "id": "09f5e2138930013e",
+        "type": "node-red-contrib-whatsapp-cmb-send-message",
+        "z": "fbde97b29c2ae97b",
+        "name": "wpp",
+        "account": "570ccf9f2b1ac502",
+        "text": "payload",
+        "inputtypemessage": "msg",
+        "rejectssl": false,
+        "x": 470,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b9a130f9558d58f6",
+        "type": "arduino in",
+        "z": "fbde97b29c2ae97b",
+        "name": "",
+        "pin": "0",
+        "state": "ANALOG",
+        "arduino": "db863f164e36e638",
+        "x": 250,
+        "y": 360,
+        "wires": [
+            [
+                "30cd5250374c9a6e"
+            ]
+        ]
+    },
+    {
+        "id": "30cd5250374c9a6e",
+        "type": "function",
+        "z": "fbde97b29c2ae97b",
+        "name": "",
+        "func": "msg.payload =\"A temperatura está muito alta, a ventoinha foi acionada\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 380,
+        "wires": [
+            [
+                "ec679c1a397309c5"
+            ]
+        ]
+    },
+    {
+        "id": "ec679c1a397309c5",
+        "type": "mqtt out",
+        "z": "fbde97b29c2ae97b",
+        "name": "",
+        "topic": "PDAControl",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "d9076f0ba5face4e",
+        "x": 670,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "711ee97f05089625",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "570ccf9f2b1ac502",
+        "type": "node-red-contrib-whatsapp-cmb-account",
+        "name": "Carlos Eduardo"
+    },
+    {
+        "id": "db863f164e36e638",
+        "type": "arduino-board",
+        "device": "COM3"
+    },
+    {
+        "id": "d9076f0ba5face4e",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "2",
+        "birthPayload": "movimento detectado",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    }
+]
